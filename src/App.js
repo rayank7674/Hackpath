@@ -1,39 +1,96 @@
-import './assets/css/App.css';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import AuthLayout from './layouts/auth';
-import AdminLayout from './layouts/admin';
-import RTLLayout from './layouts/rtl';
-import { ChakraProvider } from '@chakra-ui/react';
-import initialTheme from './theme/theme';
-import { useState } from 'react';
-import CoursesView from './views/admin/educationalPlanner/CoursesView';
-import ScheduleView from './views/admin/educationalPlanner/ScheduleView';
-import GoalsView from './views/admin/educationalPlanner/GoalsView';
+//envoronment variables
+// REACT_APP_BASE_URL_GET= "http://localhost:3000/get/"
+//REACT_APP_BASE_URL_POST="http://localhost:3000/post/"
 
-export default function Main() {
-  const [currentTheme, setCurrentTheme] = useState(initialTheme);
+import "./App.css";
+import { darkTheme } from "./Theme.js";
+import { ThemeProvider } from "@mui/material/styles";
+import { makeStyles } from "@mui/styles";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+import Navbar from "./CustomComponents/NavBar";
+import ArchivedTask from "./Pages/ArchivedTasks";
+import PredefinedTask from "./Pages/PredefinedTasks";
+import CreateNewTask from "./Pages/CreateTask";
+import CalenderView from "./Components/CalenderView";
+//import EditableTable from "./CustomComponents/EditableTable";
+import { Box } from "@mui/system";
+
+//All pages for routes
+import ManageTask from "./Pages/ManageTask";
+import AllTask from "./Pages/AllTask";
+import Dashboard from "./Pages/Dashboard";
+import NewSubject from "./Pages/CreateSubject";
+import ErrorPage from "./Pages/404";
+import ManageSubTask from "./Pages/ManageSubTask";
+
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    paddingRight: "0px",
+  },
+  rightBody: {},
+});
+
+function App() {
+  const classes = useStyles();
+
   return (
-    <ChakraProvider theme={currentTheme}>
-      <Routes>
-        <Route path="auth/*" element={<AuthLayout />} />
-        <Route
-          path="admin/*"
-          element={
-            <AdminLayout theme={currentTheme} setTheme={setCurrentTheme}>
-              <Route path="courses" element={<CoursesView />} />
-              <Route path="schedule" element={<ScheduleView />} />
-              <Route path="goals" element={<GoalsView />} />
-            </AdminLayout>
-          }
-        />
-        <Route
-          path="rtl/*"
-          element={
-            <RTLLayout theme={currentTheme} setTheme={setCurrentTheme} />
-          }
-        />
-        <Route path="/" element={<Navigate to="/admin" replace />} />
-      </Routes>
-    </ChakraProvider>
+    <div className="App">
+      <ThemeProvider theme={darkTheme}>
+        <Router>
+          <div className={classes.root}>
+            <Navbar />
+
+            {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+
+            <Box sx={{ flexGrow: 1, p: 3 }}>
+              <Switch fullwidth>
+                <Route path="/dashboard">
+                  <Dashboard />
+                </Route>
+                <Route path="/archived">
+                  <ArchivedTask />
+                </Route>
+                <Route path="/newsub">
+                  <NewSubject />
+                </Route>
+                <Route path="/predefined">
+                  <PredefinedTask />
+                </Route>
+                <Route path="/createnewtask">
+                  <CreateNewTask />
+                </Route>
+                <Route path="/managetask">
+                  <ManageTask />
+                </Route>
+                <Route path="/alltask">
+                  <AllTask />
+                </Route>
+
+                <Route path="/calender">
+                  <div style={{ width: "80%" }}>
+                    <CalenderView />
+                  </div>
+                </Route>
+
+                <Route path="/managesubtask">
+                  <div style={{ width: "80%" }}>
+                    <ManageSubTask />
+                  </div>
+                </Route>
+
+                <Route path="*">
+                  <ErrorPage />
+                </Route>
+              </Switch>
+            </Box>
+          </div>
+        </Router>
+      </ThemeProvider>
+    </div>
   );
 }
+
+export default App;
