@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# School Planner appliaction using React and Node.js 
+**Project done for EGUI course at Warsaw University of Technology.**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description  
+The aim of the project was to create school time table using React and Node.js.
+  * The user can edit dictionaries - add and remove classes, rooms, teachers and groups.
+  * If any of dictionary input will be deleted, related activity will be deleted as well.
+  * Changes in dictionaries results in changing the related fileds in activities.
+  * User can add new activity by clicking on the table slot.
+  * If newly added activity overlaps with already existing one - for instance if user added in the different room but on the same slot and day the same group, older activity will be removed.
+  * User can edit table entry by clicking on it. There will be displayed more informations about selected entry and ability to edit it.
+  * "unassign" button is available only if selected entry has assigned any data.
 
-## Available Scripts
+## Assumptions  
+* data.json file exists on server and contains the desired JSON data structure.
+* Data can be empty.
+* The data is being stored in data.json file using Express server.
 
-In the project directory, you can run:
+## To build&run  
+```sh
+npm install; npm run build; node server.js
+```
 
-### `npm start`
+# Demo
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+![alt text](https://github.com/Kjablonska/React-SchoolPlanner/blob/main/assets/school-planner.gif?raw=true)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+**Main view**  
+Main view contains time table and menu. From this page the user can select dictionary to display and add/edit any timeslot on the timetable.  
+  
+![alt text](https://github.com/Kjablonska/React-SchoolPlanner/blob/main/assets/main-view.png?raw=true)  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Activity view**  
+Activity view shows details of the selected timetable entry. It allows for edition - for already assigned entries there is a possibility to 'Unassign'.  
+  
+![alt text](https://github.com/Kjablonska/React-SchoolPlanner/blob/main/assets/activity-view.png?raw=true)  
 
-### `npm run build`
+**Dictionary view**  
+Dictionary view presents the content of the selected dictionary. It allows to entries edition/removal.  
+  
+![alt text](https://github.com/Kjablonska/React-SchoolPlanner/blob/main/assets/dictionary-view.png?raw=true)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Edition view**  
+Edition of dictionary entry view.  
+  
+![alt text](https://github.com/Kjablonska/React-SchoolPlanner/blob/main/assets/dictionary-edit-view.png?raw=true)
